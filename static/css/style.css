@@ -11,3 +11,20 @@
     border-radius: 5px;
     background-color: #f9f9f9;
 }
+
+.view_comments:checked ~ .comments  {
+    display: block!important;
+}
+
+.comment_form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+textarea {
+    height: 1em;
+}
+.comments {
+}
