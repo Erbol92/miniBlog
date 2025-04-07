@@ -27,4 +27,6 @@ textarea {
     height: 1em;
 }
 .comments {
+    height: 150px;
+    overflow-y: scroll;
 }

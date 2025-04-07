@@ -20,7 +20,7 @@
 <div class="d-flex gap-3 flex-column">
     {% for post in post_list %}
     <div class="d-flex flex-column p-3">
-        <div class="row">
+        <div>
             <div class="d-flex justify-content-between">
                 <span class="text-secondary">{{post.date_create}}</span>
                 <span class="fw-bold">{{post.author}}</span>
@@ -32,15 +32,19 @@
             <div class="bg-light text-center">
                 <label for="view_comments_{{ post.id }}" class=" btn">показать комментарии</label>
                 <input type="checkbox" id="view_comments_{{ post.id }}" class="d-none view_comments">
-                <form action="{% url 'add_comment' post.id %}" class="comment_form" method="POST">
+                <form action="{% url 'add_comment' post.id %}" class="comment_form d-flex gap-3" method="POST">
                     {% csrf_token %}
-                    {{ comment_form|crispy }}
-                    <button type="submit" class="btn btn-sm btn-outline-primary">добавить комментарий</button>
-                    <input class="btn btn-sm btn-outline-danger" type="reset" value="очистить">
+                    <div class="d-flex">
+                        {{ comment_form|crispy }}
+                    </div>
+                    <div class="align-content-center">
+                        <button type="submit" class="btn btn-sm btn-outline-primary">добавить комментарий</button>
+                        <input class="btn btn-sm btn-outline-danger" type="reset" value="очистить">
+                    </div>
                 </form>
                 <div class="comments text-start d-none">
                     {% for comment in post.comments.all %}
-                    <div class="row p-3 border-bottom">
+                    <div class="p-3 border-bottom">
                         <div class="d-flex justify-content-between">
                             <span>{{ comment.date_create }}</span>
                             <span>{{ comment.author }}</span>
