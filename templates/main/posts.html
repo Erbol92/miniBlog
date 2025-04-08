@@ -12,42 +12,43 @@
     <form action="" method="post" class="post_form">
         {% csrf_token %}
         {{ post_form|crispy }}
-        <button type="submit" class="btn btn-sm btn-outline-primary">добавить</button>
+        <button type="submit" class="btn btn-sm btn-outline-info">добавить</button>
         <input class="btn btn-sm btn-outline-danger" type="reset" value="очистить">
     </form>
 </div>
 
 <div class="d-flex gap-3 flex-column">
     {% for post in post_list %}
-    <div class="d-flex flex-column p-3">
+    <div class="d-flex flex-column p-3 m-3">
         <div>
-            <div class="d-flex justify-content-between">
-                <span class="text-secondary">{{post.date_create}}</span>
+            <div class="d-flex justify-content-between mb-1">
+                <span class="text-secondary">{{post.date_create|date:"d.m.y"}}</span>
                 <span class="fw-bold">{{post.author}}</span>
             </div>
         </div>
-        <div class="p-3 m-3 border">
+        <div class="border border-radius-3 p-3 posts">
             <h3>{{post.title}}</h3>
             <p>{{post.text}}</p>
             <div class="bg-light text-center">
-                <label for="view_comments_{{ post.id }}" class=" btn">показать комментарии</label>
+                <label for="view_comments_{{ post.id }}" class="btn btn-sm btn_view_comment">показать
+                    комментарии</label>
                 <input type="checkbox" id="view_comments_{{ post.id }}" class="d-none view_comments">
-                <form action="{% url 'add_comment' post.id %}" class="comment_form d-flex gap-3" method="POST">
+                <form action="{% url 'add_comment' post.id %}"
+                      class="comment_form d-flex gap-3 p-0 justify-content-center" method="POST">
                     {% csrf_token %}
                     <div class="d-flex">
                         {{ comment_form|crispy }}
                     </div>
                     <div class="align-content-center">
-                        <button type="submit" class="btn btn-sm btn-outline-primary">добавить комментарий</button>
+                        <button type="submit" class="btn btn-sm btn-outline-info">добавить комментарий</button>
                         <input class="btn btn-sm btn-outline-danger" type="reset" value="очистить">
                     </div>
                 </form>
                 <div class="comments text-start d-none">
                     {% for comment in post.comments.all %}
                     <div class="p-3 border-bottom">
-                        <div class="d-flex justify-content-between">
-                            <span>{{ comment.date_create }}</span>
-                            <span>{{ comment.author }}</span>
+                        <div>
+                            <span class="fw-bold">{{ comment.author }}</span> {{ comment.date_create|date:"d.m.y" }}
                         </div>
                         <p>{{ comment.text }}</p>
                     </div>

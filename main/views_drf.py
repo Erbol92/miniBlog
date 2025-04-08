@@ -1,18 +1,18 @@
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
-from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
-from rest_framework.pagination import PageNumberPagination
+from .paginators import StandardResultsSetPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 1
-    page_size_query_param = 'page_size'
-    max_page_size = 5
 
 class PostView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     pagination_class = StandardResultsSetPagination
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ['title', 'author']
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -20,9 +20,11 @@ class PostView(ListAPIView):
             serializer.save()
         return Response({'status': 'OK'})
 
+
 class PostDetailView(RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
 
 class CommentView(ListAPIView):
     queryset = Comment.objects.all()

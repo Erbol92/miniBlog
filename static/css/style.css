@@ -1,3 +1,15 @@
+.underdog-regular {
+  font-family: "Underdog", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+    background-color: rgba(0,0,0,0.1);
+}
+.posts {
+    background-color: #f9f9f9;
+}
 #add_post:checked ~ .post_form  {
     display: block;
 }
@@ -9,7 +21,6 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
 }
 
 .view_comments:checked ~ .comments  {
@@ -20,7 +31,6 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
 }
 
 textarea {
@@ -29,4 +39,8 @@ textarea {
 .comments {
     height: 150px;
     overflow-y: scroll;
+}
+
+.btn_view_comment:hover {
+    transform: scale(1.1);
 }
