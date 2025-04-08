@@ -27,13 +27,16 @@
     1. Скопировать проект 
 ```git clone git@github.com:Erbol92/miniBlog.git```
 
-    2. Docker, скачайте и установите его с официального сайта [Docker](https://www.docker.com/get-started/)
+    2. Docker, скачайте и установите его с официального сайта 
+[Docker](https://www.docker.com/get-started/)
+
     3. Запустите проект 
 ```docker-compose up --build```
     
-    4. Перейдите по [ссылке](http://127.0.0.1:8000) (фронт)
-        [post_api](http://127.0.0.1:8000/api/v1/posts)
-        [comments_api](http://127.0.0.1:8000/api/v1/comments)
+    4. Перейдите по 
+[ссылке](http://127.0.0.1:8000) (фронт)\
+[post_api](http://127.0.0.1:8000/api/v1/posts)\
+[comments_api](http://127.0.0.1:8000/api/v1/comments)
     
 Реализован поиск и пагинация
 ```
